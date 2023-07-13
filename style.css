@@ -1,1 +1,76 @@
+/* New CSS for longeill.github.io, starting 7/13/23 */
+/* I don't know how to use CSS variables to store colors yet, if that's even possible, going to be doing all this by hand at first. */
+/* It's on my list but it's a lower priority than becoming proficient with Javascript. */
 
+/* Classes for following colors work as follows: */
+/* Prefix: bg-, text-, bord- */
+/* Suffix (after hyphen): 60, 30, 10, white, black, acc-dark, acc-light */
+/* Example: <p class='bg-black text-acc-light'> */
+/* 60:             #F8F8DD */
+/* 30:             #F1F1BB */
+/* 10:             #3C91E6 */
+/* 'WHITE':        #FCFCEE */
+/* 'BLACK':        #1F271B */
+/* 'ACCENT DARK':  #B23C06 */
+/* 'ACCENT LIGHT': #F99262 */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Roboto+Slab:wght@300;500&display=swap');
+
+* {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  color: #1F271B;
+}
+
+body {
+  background-color: #FCFCEE;
+}
+
+strong {
+  font-weight: 600;
+}
+
+h1, h2, h3 {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 500;
+}
+
+h1.modern,
+h2.modern,
+h3.modern {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+}
+
+.serif {
+  font-family: 'Roboto Slab', serif;
+}
+
+.sans {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Editing this in github's regular editor because I'm on a work computer and can't install a decent text editor. So the formatting will be 👎 */
+.bg-60{background-color:#F8F8DD}
+.bg-30{background-color:#F1F1BB}
+.bg-10{background-color:#3C91E6}
+.bg-white{background-color:#FCFCEE}
+.bg-black{background-color:#1F271B}
+.bg-acc-dark{background-color:#B23C06}
+.bg-acc-light{background-color:#F99262}
+
+.text-60{color:#F8F8DD}
+.text-30{color:#F1F1BB}
+.text-10{color:#3C91E6}
+.text-white{color:#FCFCEE}
+.text-black{color:#1F271B}
+.text-acc-dark{color:#B23C06}
+.text-acc-light{color:#F99262}
+
+.bord-60{border-color:#F8F8DD}
+.bord-30{border-color:#F1F1BB}
+.bord-10{border-color:#3C91E6}
+.bord-white{border-color:#FCFCEE}
+.bord-black{border-color:#1F271B}
+.bord-acc-dark{border-color:#B23C06}
+.bord-acc-light{border-color:#F99262}
