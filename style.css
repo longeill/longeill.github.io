@@ -50,6 +50,11 @@ h3.modern {
   font-family: 'Inter', sans-serif;
 }
 
+header.navbar.navbar-dark {
+  background-color: #3C91E6;
+  color: #FCFCEE;
+}
+
 /* Editing this in github's regular editor because I'm on a work computer and can't install a decent text editor. So the formatting will be 👎 */
 .bg-60{background-color:#F8F8DD}
 .bg-30{background-color:#F1F1BB}
