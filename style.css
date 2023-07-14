@@ -50,7 +50,7 @@ h3.modern {
   font-family: 'Inter', sans-serif;
 }
 
-header.navbar.navbar-dark {
+nav#nav > * {
   background-color: #3C91E6;
   color: #FCFCEE;
 }
