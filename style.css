@@ -14,7 +14,7 @@
 /* 'ACCENT DARK':  #B23C06 */
 /* 'ACCENT LIGHT': #F99262 */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Roboto+Slab:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Inconsolata&family=Roboto+Slab:wght@300;500&display=swap');
 
 * {
   font-family: 'Inter', sans-serif;
@@ -48,6 +48,10 @@ h3.modern {
 
 .sans {
   font-family: 'Inter', sans-serif;
+}
+
+.mono {
+  font-family: 'Inconsolata', monospace;
 }
 
 nav#nav > * {
