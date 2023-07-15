@@ -54,7 +54,7 @@ h3.modern {
   font-family: 'Inconsolata', monospace;
 }
 
-nav#mainNav, nav#mainNav > * {
+nav#main-nav, nav#main-nav > * {
   background-color: #3C91E6;
   color: #FCFCEE;
 }
