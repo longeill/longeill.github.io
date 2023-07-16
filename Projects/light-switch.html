@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>What Can JavaScript Do?</h2>
+
+<p>JavaScript can change HTML attribute values.</p>
+
+<p>In this case JavaScript changes the value of the src (source) attribute of an image.</p>
+
+
+<div style="width:100%">
+	<img id="bulb" src="pic_bulboff.gif" style="display:block;width:100px;margin:auto;">
+	<div id="buttonDiv" style="width:100%;display:block;">
+		<button id="light-switch" style="display:block;margin:auto" onclick="lightSwitch()">Light switch</button>
+	</div>
+</div>
+
+<script>
+	function lightSwitch{
+		if (document.getElementById('bulb').src == 'pic_bulbon.gif') {
+	      document.getElementById("bulb").src = "pic_bulboff.gif";
+	  	} else {
+	      document.getElementById("bulb").src = "pic_bulbon.gif";
+		}
+	}
+</script>
+
+
+
+</body>
+</html>
