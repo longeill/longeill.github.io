@@ -59,6 +59,10 @@ nav#main-nav, nav#main-nav > * {
   color: #FCFCEE;
 }
 
+p {
+  padding-top:
+}
+
 /* Editing this in github's regular editor because I'm on a work computer and can't install a decent text editor. So the formatting will be 👎 */
 .bg-60{background-color:#F8F8DD}
 .bg-30{background-color:#F1F1BB}
