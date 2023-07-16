@@ -59,13 +59,6 @@ nav#main-nav, nav#main-nav > * {
   color: #FCFCEE;
 }
 
-/* I'm using StackEdit+ to take notes and I had the bright idea to use their markdown editor to create code snippets for this site. */
-/* To do that I'm importing their CSS file on pages that use these snippets. Below is where I'll fix any of those issues that arise. */
-/* Until I can replace it with something more elegant because calling in that big a CSS file for a text box is ludicrous. */
-span.token{
-  font-family:'Inconsolata', monospace !important;
-}
-
 /* Editing this in github's regular editor because I'm on a work computer and can't install a decent text editor. So the formatting will be 👎 */
 .bg-60{background-color:#F8F8DD}
 .bg-30{background-color:#F1F1BB}
