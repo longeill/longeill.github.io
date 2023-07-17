@@ -51,6 +51,9 @@ document.addEventListener("DOMContentLoaded", function () {
           link.href = item.link;
           listItem.appendChild(link);
         } else if (item.properties === "dropdown") {
+          var dropdownItem = document.createElement("li");
+          dropdownItem.className = "nav-item dropdown";
+
           var dropdownLink = document.createElement("a");
           dropdownLink.className = "nav-link dropdown-toggle";
           dropdownLink.textContent = item.name;
@@ -72,12 +75,17 @@ document.addEventListener("DOMContentLoaded", function () {
             dropdownMenu.appendChild(dropdownMenuItem);
           });
 
-          listItem.appendChild(dropdownLink);
-          listItem.appendChild(dropdownMenu);
+          dropdownItem.appendChild(dropdownLink);
+          dropdownItem.appendChild(dropdownMenu);
+
+          listItem.appendChild(dropdownItem);
         }
 
         navbarLinksContainer.appendChild(listItem);
       });
+    })
+    .catch((error) => {
+      console.error("Error fetching JSON data:", error);
     });
 });
       });
