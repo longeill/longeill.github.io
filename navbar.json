@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Home",
+    "location": "navbar/Home",
+    "navbarPosition": 0,
+    "link": "index.html",
+    "properties": "link"
+  },
+  {
+    "name": "Workflow",
+    "location": "navbar/Workflow",
+    "navbarPosition": 1,
+    "link": "workflow.html",
+    "properties": "link"
+  },
+  {
+    "name": "Resumé",
+    "location": "navbar/Resume",
+    "navbarPosition": 2,
+    "link": "resume.html",
+    "properties": "link"
+  },
+  {
+    "name": "Projects",
+    "location": "navbar/Projects",
+    "navbarPosition": 3,
+    "link": "projects.html",
+    "properties": "dropdown",
+    "subitems": [
+      {
+        "name": "Name Generator",
+        "location": "navbar/Projects/Name Generator",
+        "navbarPosition": 0,
+        "link": "Projects/Name+Generator/name-generator.html",
+        "properties": "link"
+      },
+      {
+        "name": "Light Switch",
+        "location": "navbar/Projects/Light Switch",
+        "navbarPosition": 1,
+        "link": "Projects/Light+Switch/light-switch.html",
+        "properties": "link"
+      }
+    ]
+  }
+]
