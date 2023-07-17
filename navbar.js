@@ -8,59 +8,6 @@
 // Destroy, Rebuild.
 
 document.addEventListener("DOMContentLoaded", function () {
-  var navbarLinks = [
-    { name: "Home", link: "index.html" },
-    { name: "Workflow", link: "workflow.html" },
-    { name: "Resumé", link: "resume.html" },
-    {
-      name: "Projects",
-      link: "projects.html",
-      properties: "dropdown",
-      subitems: [
-        {
-          name: "Name Generator",
-          link: "name-generator/name-generator.html",
-        },
-        {
-          name: "Light Switch",
-          link: "light-switch/light-switch.html",
-        },
-      ],
-    },
-  ];
-
-  var currentPath = window.location.pathname;
-
-  var navbarLinksHtml = navbarLinks
-    .map(function (item) {
-      var isActive = currentPath.endsWith(item.link);
-      var linkClass = isActive ? "nav-link active" : "nav-link";
-      var dropdownClass = item.properties === "dropdown" ? "dropdown-toggle" : "";
-      var dropdownMenuHtml = "";
-
-      if (item.subitems) {
-        dropdownMenuHtml = `
-          <ul class="dropdown-menu">
-            ${item.subitems
-              .map(function (subitem) {
-                var isSubitemActive = currentPath.endsWith(subitem.link);
-                var subitemLinkClass = isSubitemActive ? "dropdown-item active" : "dropdown-item";
-                return `<li><a class="${subitemLinkClass}" href="../../${subitem.link}">${subitem.name}</a></li>`;
-              })
-              .join("")}
-          </ul>
-        `;
-      }
-
-      return `
-        <li class="nav-item">
-          <a class="${linkClass} ${dropdownClass}" href="${item.link}" data-bs-toggle="dropdown">${item.name}</a>
-          ${dropdownMenuHtml}
-        </li>
-      `;
-    })
-    .join("");
-
   var navbarHtml = `
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
@@ -70,7 +17,18 @@ document.addEventListener("DOMContentLoaded", function () {
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            ${navbarLinksHtml}
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="workflow.html">Workflow</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="resume.html">Resumé</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="projects.html">Projects</a>
+            </li>
           </ul>
         </div>
       </div>
