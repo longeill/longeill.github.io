@@ -9,7 +9,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
   // Fetch the JSON data
-  var jsonDataPath = "navbar.json";
+  var jsonDataPath = "/navbar.json";
   fetch(jsonDataPath)
     .then((response) => response.json())
     .then((data) => {
