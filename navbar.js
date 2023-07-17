@@ -1,3 +1,9 @@
+// This file goes against what I wanted to do with this site, which is make everything myself. But I needed to be able to have users
+// navigate so I had it generated via ChatGPT through multiple iterations trying to get the links to dynamically pull from GitHub. 
+// This kept causing issues because the data wasn't pulling correctly. After missing my bedtime by hours I finally asked it at 3:30am
+// to let me make the values myself in a separate JSON file and gave it the structure I wanted for it. Outside of needing to waste
+// 2 hours of vacation time by coming in to my job late it worked like a charm. 7/16/23-7/17/23
+
 document.addEventListener("DOMContentLoaded", function () {
   // Create the navbar HTML
   var navbarHtml = `
