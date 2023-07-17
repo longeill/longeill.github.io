@@ -8,8 +8,11 @@
 // Destroy, Rebuild.
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Get the root directory path
+  var rootPath = window.location.pathname.split("/")[1] || "";
+
   // Fetch the JSON data
-  var jsonDataPath = "/navbar.json";
+  var jsonDataPath = "/" + rootPath + "/navbar.json";
   fetch(jsonDataPath)
     .then((response) => response.json())
     .then((data) => {
@@ -20,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var isActive = window.location.pathname.includes(item.link);
 
         var linkClass = isActive ? "nav-link active" : "nav-link";
-        navbarLinks += `<li class="nav-item"><a class="${linkClass}" href="${item.link}">${item.name}</a></li>`;
+        navbarLinks += `<li class="nav-item"><a class="${linkClass}" href="/${rootPath}/${item.link}">${item.name}</a></li>`;
       });
 
       // Update the navbar placeholder with the generated links
@@ -28,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
       navbarPlaceholder.innerHTML = `
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container">
-            <a class="navbar-brand" href="index.html">Longeill</a>
+            <a class="navbar-brand" href="/${rootPath}/index.html">Longeill</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
