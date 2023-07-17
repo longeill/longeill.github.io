@@ -31,14 +31,14 @@
         "name": "Name Generator",
         "location": "navbar/Projects/Name Generator",
         "navbarPosition": 0,
-        "link": "Name+Generator/name-generator.html",
+        "link": "Projects/Name+Generator/name-generator.html",
         "properties": "link"
       },
       {
         "name": "Light Switch",
         "location": "navbar/Projects/Light Switch",
         "navbarPosition": 1,
-        "link": "Light+Switch/light-switch.html",
+        "link": "Projects/Light+Switch/light-switch.html",
         "properties": "link"
       }
     ]
