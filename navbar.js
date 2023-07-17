@@ -47,3 +47,9 @@ function generateNavbar() {
 
   return navbar;
 }
+
+window.addEventListener("DOMContentLoaded", function() {
+  var navbarPlaceholder = document.getElementById("navbar-placeholder");
+  var navbar = generateNavbar();
+  navbarPlaceholder.parentNode.replaceChild(navbar, navbarPlaceholder);
+});
