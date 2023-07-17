@@ -3,26 +3,13 @@ document.addEventListener("DOMContentLoaded", function () {
   var navbarHtml = `
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="../index.html">Longeill</a>
+        <a class="navbar-brand" href="index.html">Longeill</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="../workflow.html">Workflow</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../resume.html">Resumé</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="../projects.html" id="projectsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Projects
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
-                <!-- Dynamically generated project links will be added here -->
-              </ul>
-            </li>
+            <!-- Dynamically generated navbar links will be added here -->
           </ul>
         </div>
       </div>
@@ -35,22 +22,53 @@ document.addEventListener("DOMContentLoaded", function () {
   // Set the navbar HTML as the content of the placeholder
   placeholder.innerHTML = navbarHtml;
 
-  // Dynamically generate project links for the dropdown
-  var projectsMenu = document.querySelector("#projectsDropdown + .dropdown-menu");
-  var projectsJsonPath = "projects.json";
-
-  fetch(projectsJsonPath)
+  // Fetch the JSON data
+  var jsonDataPath = "navbar.json";
+  fetch(jsonDataPath)
     .then((response) => response.json())
     .then((data) => {
-      data.forEach(function (project) {
-        var menuItem = document.createElement("li");
-        var linkItem = document.createElement("a");
-        linkItem.className = "dropdown-item";
-        linkItem.textContent = project.name;
-        linkItem.href = "../Projects/" + project.link;
+      // Sort the data based on the "navbarPosition" property
+      data.sort((a, b) => a.navbarPosition - b.navbarPosition);
 
-        menuItem.appendChild(linkItem);
-        projectsMenu.appendChild(menuItem);
+      // Get the navbar links container
+      var navbarLinksContainer = document.querySelector(".navbar-nav");
+
+      // Generate the navbar links
+      data.forEach(function (item) {
+        if (item.properties === "link") {
+          var listItem = document.createElement("li");
+          listItem.className = "nav-item";
+          var link = document.createElement("a");
+          link.className = "nav-link";
+          link.textContent = item.name;
+          link.href = item.link;
+          listItem.appendChild(link);
+          navbarLinksContainer.appendChild(listItem);
+        } else if (item.properties === "dropdown") {
+          var dropdownItem = document.createElement("li");
+          dropdownItem.className = "nav-item dropdown";
+          var dropdownLink = document.createElement("a");
+          dropdownLink.className = "nav-link dropdown-toggle";
+          dropdownLink.textContent = item.name;
+          dropdownLink.href = item.link;
+          dropdownLink.setAttribute("role", "button");
+          dropdownLink.setAttribute("data-bs-toggle", "dropdown");
+          var dropdownMenu = document.createElement("ul");
+          dropdownMenu.className = "dropdown-menu";
+          item.subitems.sort((a, b) => a.navbarPosition - b.navbarPosition);
+          item.subitems.forEach(function (subitem) {
+            var dropdownMenuItem = document.createElement("li");
+            var dropdownSublink = document.createElement("a");
+            dropdownSublink.className = "dropdown-item";
+            dropdownSublink.textContent = subitem.name;
+            dropdownSublink.href = subitem.link;
+            dropdownMenuItem.appendChild(dropdownSublink);
+            dropdownMenu.appendChild(dropdownMenuItem);
+          });
+          dropdownItem.appendChild(dropdownLink);
+          dropdownItem.appendChild(dropdownMenu);
+          navbarLinksContainer.appendChild(dropdownItem);
+        }
       });
     });
 });
