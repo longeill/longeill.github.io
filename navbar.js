@@ -24,21 +24,18 @@ function generateNavbar() {
 
   var dropdownMenu = navbar.querySelector(".dropdown-menu");
 
-  fetch("https://api.github.com/repos/longeill/longeill.github.io/contents/Projects")
+  fetch("https://api.github.com/repos/longeill/longeill.github.io/contents/projects")
     .then(function(response) {
       return response.json();
     })
     .then(function(data) {
       data.forEach(function(item) {
-        if (item.type === "dir") {
-          var directory = item.name.replace(/\+/g, " ");
-          var link = `https://longeill.github.io/Projects/${directory}/${directory}.html`;
-          var linkElement = document.createElement("a");
-          linkElement.className = "dropdown-item";
-          linkElement.href = link;
-          linkElement.textContent = directory;
-          dropdownMenu.appendChild(linkElement);
-        }
+        var pageName = item.name.split(".")[0];
+        var pageLink = document.createElement("a");
+        pageLink.className = "dropdown-item";
+        pageLink.href = "projects/" + item.name;
+        pageLink.textContent = pageName;
+        dropdownMenu.appendChild(pageLink);
       });
     })
     .catch(function(error) {
