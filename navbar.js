@@ -4,90 +4,44 @@
 // to let me make the values myself in a separate JSON file and gave it the structure I wanted for it. Outside of needing to waste
 // 2 hours of vacation time by coming in to my job late it worked like a charm. 7/16/23-7/17/23
 
+// jk. It didn't work on anything in the projects/ directory at all. Every time I tried to iterate on this with GPT it made it worse.
+// Destroy, Rebuild.
+
 document.addEventListener("DOMContentLoaded", function () {
-  // Create the navbar HTML
-  var navbarHtml = `
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <a class="navbar-brand" href="../index.html">Longeill</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <!-- Dynamically generated navbar links will be added here -->
-          </ul>
-        </div>
-      </div>
-    </nav>
-  `;
-
-  // Get the placeholder element
-  var placeholder = document.getElementById("navbar-placeholder");
-
-  // Set the navbar HTML as the content of the placeholder
-  placeholder.innerHTML = navbarHtml;
-
   // Fetch the JSON data
-  var jsonDataPath = "../navbar.json";
+  var jsonDataPath = "navbar.json";
   fetch(jsonDataPath)
     .then((response) => response.json())
     .then((data) => {
-      // Sort the data based on the "navbarPosition" property
-      data.sort((a, b) => a.navbarPosition - b.navbarPosition);
-
-      // Get the navbar links container
-      var navbarLinksContainer = document.querySelector(".navbar-nav");
+      var navbarLinks = "";
 
       // Generate the navbar links
       data.forEach(function (item) {
-        var listItem = document.createElement("li");
-        listItem.className = "nav-item";
+        var isActive = window.location.pathname.includes(item.link);
 
-        if (item.properties === "link") {
-          var link = document.createElement("a");
-          link.className = "nav-link";
-          link.textContent = item.name;
-          link.href = item.link;
-          listItem.appendChild(link);
-        } else if (item.properties === "dropdown") {
-          var dropdownItem = document.createElement("li");
-          dropdownItem.className = "nav-item dropdown";
-
-          var dropdownLink = document.createElement("a");
-          dropdownLink.className = "nav-link dropdown-toggle";
-          dropdownLink.textContent = item.name;
-          dropdownLink.href = item.link;
-          dropdownLink.setAttribute("role", "button");
-          dropdownLink.setAttribute("data-bs-toggle", "dropdown");
-
-          var dropdownMenu = document.createElement("ul");
-          dropdownMenu.className = "dropdown-menu";
-
-          item.subitems.sort((a, b) => a.navbarPosition - b.navbarPosition);
-          item.subitems.forEach(function (subitem) {
-            var dropdownMenuItem = document.createElement("li");
-            var dropdownSublink = document.createElement("a");
-            dropdownSublink.className = "dropdown-item";
-            dropdownSublink.textContent = subitem.name;
-            dropdownSublink.href = subitem.link;
-            dropdownMenuItem.appendChild(dropdownSublink);
-            dropdownMenu.appendChild(dropdownMenuItem);
-          });
-
-          dropdownItem.appendChild(dropdownLink);
-          dropdownItem.appendChild(dropdownMenu);
-
-          listItem.appendChild(dropdownItem);
-        }
-
-        navbarLinksContainer.appendChild(listItem);
+        var linkClass = isActive ? "nav-link active" : "nav-link";
+        navbarLinks += `<li class="nav-item"><a class="${linkClass}" href="${item.link}">${item.name}</a></li>`;
       });
+
+      // Update the navbar placeholder with the generated links
+      var navbarPlaceholder = document.getElementById("navbar-placeholder");
+      navbarPlaceholder.innerHTML = `
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container">
+            <a class="navbar-brand" href="index.html">Longeill</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                ${navbarLinks}
+              </ul>
+            </div>
+          </div>
+        </nav>
+      `;
     })
     .catch((error) => {
       console.error("Error fetching JSON data:", error);
-    });
-});
-      });
     });
 });
