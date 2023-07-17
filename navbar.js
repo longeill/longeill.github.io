@@ -54,14 +54,16 @@ document.addEventListener("DOMContentLoaded", function () {
         var folderName = link.href.substring(link.href.lastIndexOf("/") + 1, link.href.length - 1);
         var fileName = folderName + ".html";
 
-        var menuItem = document.createElement("li");
-        var linkItem = document.createElement("a");
-        linkItem.className = "dropdown-item";
-        linkItem.textContent = folderName;
-        linkItem.href = projectsDirectory + folderName + "/" + fileName;
+        if (fileName !== "html.html") {
+          var menuItem = document.createElement("li");
+          var linkItem = document.createElement("a");
+          linkItem.className = "dropdown-item";
+          linkItem.textContent = folderName;
+          linkItem.href = projectsDirectory + folderName + "/" + fileName;
 
-        menuItem.appendChild(linkItem);
-        projectsMenu.appendChild(menuItem);
+          menuItem.appendChild(linkItem);
+          projectsMenu.appendChild(menuItem);
+        }
       });
     });
 });
