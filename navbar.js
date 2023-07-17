@@ -8,40 +8,77 @@
 // Destroy, Rebuild.
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Fetch the JSON data
-  var jsonDataPath = "navbar.json";
-  fetch(jsonDataPath)
-    .then((response) => response.json())
-    .then((data) => {
-      var navbarLinks = "";
+  var navbarLinks = [
+    { name: "Home", link: "index.html" },
+    { name: "Workflow", link: "workflow.html" },
+    { name: "Resumé", link: "resume.html" },
+    {
+      name: "Projects",
+      link: "projects.html",
+      properties: "dropdown",
+      subitems: [
+        {
+          name: "Name Generator",
+          link: "projects/name-generator/name-generator.html",
+        },
+        {
+          name: "Light Switch",
+          link: "projects/light-switch/light-switch.html",
+        },
+      ],
+    },
+  ];
 
-      // Generate the navbar links
-      data.forEach(function (item) {
-        var isActive = window.location.pathname.includes(item.link);
+  var navbarLinksHtml = navbarLinks
+    .map(function (item) {
+      var isActive = window.location.pathname.includes(item.link);
+      var linkClass = isActive ? "nav-link active" : "nav-link";
+      var dropdownClass = item.properties === "dropdown" ? "dropdown-toggle" : "";
+      var dropdownMenuHtml = "";
 
-        var linkClass = isActive ? "nav-link active" : "nav-link";
-        navbarLinks += `<li class="nav-item"><a class="${linkClass}" href="${item.link}">${item.name}</a></li>`;
-      });
+      if (item.subitems) {
+        dropdownMenuHtml = `
+          <ul class="dropdown-menu">
+            ${item.subitems
+              .map(
+                function (subitem) {
+                  var isSubitemActive = window.location.pathname.includes(
+                    subitem.link
+                  );
+                  var subitemLinkClass = isSubitemActive ? "dropdown-item active" : "dropdown-item";
+                  return `<li><a class="${subitemLinkClass}" href="${subitem.link}">${subitem.name}</a></li>`;
+                }
+              )
+              .join("")}
+          </ul>
+        `;
+      }
 
-      // Update the navbar placeholder with the generated links
-      var navbarPlaceholder = document.getElementById("navbar-placeholder");
-      navbarPlaceholder.innerHTML = `
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container">
-            <a class="navbar-brand" href="index.html">Longeill</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                ${navbarLinks}
-              </ul>
-            </div>
-          </div>
-        </nav>
+      return `
+        <li class="nav-item">
+          <a class="${linkClass} ${dropdownClass}" href="${item.link}" data-bs-toggle="dropdown">${item.name}</a>
+          ${dropdownMenuHtml}
+        </li>
       `;
     })
-    .catch((error) => {
-      console.error("Error fetching JSON data:", error);
-    });
+    .join("");
+
+  var navbarHtml = `
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Longeill</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            ${navbarLinksHtml}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  `;
+
+  var navbarPlaceholder = document.getElementById("navbar-placeholder");
+  navbarPlaceholder.innerHTML = navbarHtml;
 });
