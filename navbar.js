@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var navbarHtml = `
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="index.html">Longeill</a>
+        <a class="navbar-brand" href="../index.html">Longeill</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
   placeholder.innerHTML = navbarHtml;
 
   // Fetch the JSON data
-  var jsonDataPath = "navbar.json";
+  var jsonDataPath = "../navbar.json";
   fetch(jsonDataPath)
     .then((response) => response.json())
     .then((data) => {
@@ -41,26 +41,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Generate the navbar links
       data.forEach(function (item) {
+        var listItem = document.createElement("li");
+        listItem.className = "nav-item";
+
         if (item.properties === "link") {
-          var listItem = document.createElement("li");
-          listItem.className = "nav-item";
           var link = document.createElement("a");
           link.className = "nav-link";
           link.textContent = item.name;
           link.href = item.link;
           listItem.appendChild(link);
-          navbarLinksContainer.appendChild(listItem);
         } else if (item.properties === "dropdown") {
-          var dropdownItem = document.createElement("li");
-          dropdownItem.className = "nav-item dropdown";
           var dropdownLink = document.createElement("a");
           dropdownLink.className = "nav-link dropdown-toggle";
           dropdownLink.textContent = item.name;
           dropdownLink.href = item.link;
           dropdownLink.setAttribute("role", "button");
           dropdownLink.setAttribute("data-bs-toggle", "dropdown");
+
           var dropdownMenu = document.createElement("ul");
           dropdownMenu.className = "dropdown-menu";
+
           item.subitems.sort((a, b) => a.navbarPosition - b.navbarPosition);
           item.subitems.forEach(function (subitem) {
             var dropdownMenuItem = document.createElement("li");
@@ -71,10 +71,15 @@ document.addEventListener("DOMContentLoaded", function () {
             dropdownMenuItem.appendChild(dropdownSublink);
             dropdownMenu.appendChild(dropdownMenuItem);
           });
-          dropdownItem.appendChild(dropdownLink);
-          dropdownItem.appendChild(dropdownMenu);
-          navbarLinksContainer.appendChild(dropdownItem);
+
+          listItem.appendChild(dropdownLink);
+          listItem.appendChild(dropdownMenu);
         }
+
+        navbarLinksContainer.appendChild(listItem);
+      });
+    });
+});
       });
     });
 });
