@@ -19,19 +19,21 @@ document.addEventListener("DOMContentLoaded", function () {
       subitems: [
         {
           name: "Name Generator",
-          link: "projects/name-generator/name-generator.html",
+          link: "name-generator/name-generator.html",
         },
         {
           name: "Light Switch",
-          link: "projects/light-switch/light-switch.html",
+          link: "light-switch/light-switch.html",
         },
       ],
     },
   ];
 
+  var currentPath = window.location.pathname;
+
   var navbarLinksHtml = navbarLinks
     .map(function (item) {
-      var isActive = window.location.pathname.includes(item.link);
+      var isActive = currentPath.endsWith(item.link);
       var linkClass = isActive ? "nav-link active" : "nav-link";
       var dropdownClass = item.properties === "dropdown" ? "dropdown-toggle" : "";
       var dropdownMenuHtml = "";
@@ -40,15 +42,11 @@ document.addEventListener("DOMContentLoaded", function () {
         dropdownMenuHtml = `
           <ul class="dropdown-menu">
             ${item.subitems
-              .map(
-                function (subitem) {
-                  var isSubitemActive = window.location.pathname.includes(
-                    subitem.link
-                  );
-                  var subitemLinkClass = isSubitemActive ? "dropdown-item active" : "dropdown-item";
-                  return `<li><a class="${subitemLinkClass}" href="${subitem.link}">${subitem.name}</a></li>`;
-                }
-              )
+              .map(function (subitem) {
+                var isSubitemActive = currentPath.endsWith(subitem.link);
+                var subitemLinkClass = isSubitemActive ? "dropdown-item active" : "dropdown-item";
+                return `<li><a class="${subitemLinkClass}" href="../../${subitem.link}">${subitem.name}</a></li>`;
+              })
               .join("")}
           </ul>
         `;
