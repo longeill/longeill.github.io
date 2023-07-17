@@ -24,18 +24,21 @@ function generateNavbar() {
 
   var dropdownMenu = navbar.querySelector(".dropdown-menu");
 
-  fetch("https://api.github.com/repos/longeill/longeill.github.io/contents/projects")
+  fetch("https://api.github.com/repos/longeill/longeill.github.io/contents/Projects")
     .then(function(response) {
       return response.json();
     })
     .then(function(data) {
       data.forEach(function(item) {
-        var pageName = item.name.split(".")[0];
-        var pageLink = document.createElement("a");
-        pageLink.className = "dropdown-item";
-        pageLink.href = "projects/" + item.name;
-        pageLink.textContent = pageName;
-        dropdownMenu.appendChild(pageLink);
+        if (item.type === "dir") {
+          var directory = item.name.replace(/\+/g, " ");
+          var link = `https://longeill.github.io/Projects/${directory}/${directory}.html`;
+          var linkElement = document.createElement("a");
+          linkElement.className = "dropdown-item";
+          linkElement.href = link;
+          linkElement.textContent = directory;
+          dropdownMenu.appendChild(linkElement);
+        }
       });
     })
     .catch(function(error) {
@@ -44,9 +47,3 @@ function generateNavbar() {
 
   return navbar;
 }
-
-window.addEventListener("DOMContentLoaded", function() {
-  var navbarPlaceholder = document.getElementById("navbar-placeholder");
-  var navbar = generateNavbar();
-  navbarPlaceholder.parentNode.replaceChild(navbar, navbarPlaceholder);
-});
