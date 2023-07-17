@@ -10,13 +10,13 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link" href="../index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="workflow.html">Workflow</a>
+              <a class="nav-link" href="../workflow.html">Workflow</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="resume.html">Resumé</a>
+              <a class="nav-link" href="../resume.html">Resumé</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="projects.html" id="projectsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var linkItem = document.createElement("a");
         linkItem.className = "dropdown-item";
         linkItem.textContent = project.name;
-        linkItem.href = project.link;
+        linkItem.href = "Projects/" + project.link;
 
         menuItem.appendChild(linkItem);
         projectsMenu.appendChild(menuItem);
