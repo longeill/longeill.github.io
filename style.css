@@ -16,7 +16,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Inconsolata&family=Roboto+Slab:wght@300;500&display=swap');
 
-* {
+body {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   color: #1F271B;
@@ -42,15 +42,15 @@ h3.modern {
   font-weight: 900;
 }
 
-.serif {
+*.serif {
   font-family: 'Roboto Slab', serif;
 }
 
-.sans {
+*.sans {
   font-family: 'Inter', sans-serif;
 }
 
-.mono {
+code, pre, kbd, span.token, span.tag, *.mono {
   font-family: 'Inconsolata', monospace;
 }
 
@@ -64,26 +64,26 @@ p {
 }
 
 /* Editing this in github's regular editor because I'm on a work computer and can't install a decent text editor. So the formatting will be 👎 */
-.bg-60{background-color:#F8F8DD}
-.bg-30{background-color:#F1F1BB}
-.bg-10{background-color:#3C91E6}
-.bg-white{background-color:#FCFCEE}
-.bg-black{background-color:#1F271B}
-.bg-acc-dark{background-color:#B23C06}
-.bg-acc-light{background-color:#F99262}
+*.bg-60{background-color:#F8F8DD}
+*.bg-30{background-color:#F1F1BB}
+*.bg-10{background-color:#3C91E6}
+*.bg-white{background-color:#FCFCEE}
+*.bg-black{background-color:#1F271B}
+*.bg-acc-dark{background-color:#B23C06}
+*.bg-acc-light{background-color:#F99262}
 
-.text-60{color:#F8F8DD}
-.text-30{color:#F1F1BB}
-.text-10{color:#3C91E6}
-.text-white{color:#FCFCEE}
-.text-black{color:#1F271B}
-.text-acc-dark{color:#B23C06}
-.text-acc-light{color:#F99262}
+*.text-60{color:#F8F8DD}
+*.text-30{color:#F1F1BB}
+*.text-10{color:#3C91E6}
+*.text-white{color:#FCFCEE}
+*.text-black{color:#1F271B}
+*.text-acc-dark{color:#B23C06}
+*.text-acc-light{color:#F99262}
 
-.bord-60{border-color:#F8F8DD}
-.bord-30{border-color:#F1F1BB}
-.bord-10{border-color:#3C91E6}
-.bord-white{border-color:#FCFCEE}
-.bord-black{border-color:#1F271B}
-.bord-acc-dark{border-color:#B23C06}
-.bord-acc-light{border-color:#F99262}
+*.bord-60{border-color:#F8F8DD}
+*.bord-30{border-color:#F1F1BB}
+*.bord-10{border-color:#3C91E6}
+*.bord-white{border-color:#FCFCEE}
+*.bord-black{border-color:#1F271B}
+*.bord-acc-dark{border-color:#B23C06}
+*.bord-acc-light{border-color:#F99262}
