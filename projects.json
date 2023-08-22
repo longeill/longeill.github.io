@@ -1,8 +1,10 @@
 const pageData = {
+  "Name-Generator":
   {
     "name": "Name Generator",
     "link": "Projects/Name+Generator/name-generator.html"
   },
+  "Light-Switch":
   {
     "name": "Light Switch",
     "link": "Projects/Light+Switch/light-switch.html",
