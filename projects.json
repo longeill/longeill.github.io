@@ -5,6 +5,8 @@
   },
   {
     "name": "Light Switch",
-    "link": "Projects/Light+Switch/light-switch.html"
+    "link": "Projects/Light+Switch/light-switch.html",
+    "div-body":
+        `<p style='font-family:mono;color:red;'>testing</p>`
   }
 ]
