@@ -1,11 +1,9 @@
-[
-  {
-    "name": "Name Generator",
-    "link": "Projects/Name+Generator/name-generator.html"
-  },
-  {
-    "name": "Light Switch",
-    "link": "Projects/Light+Switch/light-switch.html",
-    "div-body": "<p style='font-family:mono;color:red;'>testing...</p>"
-  }
-]
+const pageData = {
+  "name": "Name Generator",
+  "link": "Projects/Name+Generator/name-generator.html"
+},
+{
+  "name": "Light Switch",
+  "link": "Projects/Light+Switch/light-switch.html",
+  "div-body": "<p style='font-family:mono;color:red;'>testing...</p>"
+}
